@@ -1,0 +1,14 @@
+var _user$project$Main$openNote = function (size) {
+	var _p0 = size;
+	if (_p0.ctor === 'BigWindow') {
+		return 'window is big';
+	} else {
+		return 'window is small';
+	}
+};
+var _user$project$Main$BigWindow = {ctor: 'BigWindow'};
+var _user$project$Main$SmallWindow = {ctor: 'SmallWindow'};
+var _user$project$Main$main = {
+	main: _elm_lang$html$Html$text(
+		_user$project$Main$openNote(_user$project$Main$SmallWindow))
+};

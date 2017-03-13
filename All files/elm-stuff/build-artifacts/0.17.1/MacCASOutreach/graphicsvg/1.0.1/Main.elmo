@@ -1,0 +1,145 @@
+var _MacCASOutreach$graphicsvg$Main$check = F2(
+	function (aPos, anInst) {
+		var _p0 = anInst;
+		if (_p0.ctor === 'Just') {
+			return _elm_lang$core$Maybe$Just(
+				_elm_lang$core$Native_Utils.update(
+					_p0._0,
+					{pos: aPos}));
+		} else {
+			return _elm_lang$core$Maybe$Nothing;
+		}
+	});
+var _MacCASOutreach$graphicsvg$Main$instanceVars = {
+	shapeSize: 50,
+	pos: {ctor: '_Tuple2', _0: 0, _1: 0},
+	dragging: false
+};
+var _MacCASOutreach$graphicsvg$Main$update = F2(
+	function (msg, model) {
+		var _p1 = msg;
+		switch (_p1.ctor) {
+			case 'Tick':
+				return model;
+			case 'MouseMoved':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						instDict: A3(
+							_elm_lang$core$Dict$update,
+							model.inFocus,
+							_MacCASOutreach$graphicsvg$Main$check(
+								{ctor: '_Tuple2', _0: _p1._0._0, _1: _p1._0._1}),
+							model.instDict)
+					});
+			case 'CreateNew':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						instDict: A3(_elm_lang$core$Dict$insert, model.instKey, _MacCASOutreach$graphicsvg$Main$instanceVars, model.instDict),
+						instKey: model.instKey + 1
+					});
+			default:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{inFocus: _p1._0});
+		}
+	});
+var _MacCASOutreach$graphicsvg$Main$myModel = {
+	inFocus: 0,
+	instKey: 1,
+	dragging: false,
+	instDict: A3(_elm_lang$core$Dict$insert, 0, _MacCASOutreach$graphicsvg$Main$instanceVars, _elm_lang$core$Dict$empty)
+};
+var _MacCASOutreach$graphicsvg$Main$CreateNew = {ctor: 'CreateNew'};
+var _MacCASOutreach$graphicsvg$Main$createBox = function (model) {
+	return _MacCASOutreach$graphicsvg$GraphicSVG$group(
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_MacCASOutreach$graphicsvg$GraphicSVG$notifyTap,
+				_MacCASOutreach$graphicsvg$Main$CreateNew,
+				A2(
+					_MacCASOutreach$graphicsvg$GraphicSVG$move,
+					{ctor: '_Tuple2', _0: -100, _1: -100},
+					A2(
+						_MacCASOutreach$graphicsvg$GraphicSVG$filled,
+						_MacCASOutreach$graphicsvg$GraphicSVG$blue,
+						_MacCASOutreach$graphicsvg$GraphicSVG$square(25)))),
+				A2(
+				_MacCASOutreach$graphicsvg$GraphicSVG$move,
+				{ctor: '_Tuple2', _0: -110, _1: -110},
+				A2(
+					_MacCASOutreach$graphicsvg$GraphicSVG$filled,
+					_MacCASOutreach$graphicsvg$GraphicSVG$black,
+					A2(
+						_MacCASOutreach$graphicsvg$GraphicSVG$size,
+						20,
+						_MacCASOutreach$graphicsvg$GraphicSVG$text(
+							_elm_lang$core$Basics$toString(model.inFocus)))))
+			]));
+};
+var _MacCASOutreach$graphicsvg$Main$Clicked = function (a) {
+	return {ctor: 'Clicked', _0: a};
+};
+var _MacCASOutreach$graphicsvg$Main$MouseMoved = function (a) {
+	return {ctor: 'MouseMoved', _0: a};
+};
+var _MacCASOutreach$graphicsvg$Main$aBox = function (_p2) {
+	var _p3 = _p2;
+	var _p5 = _p3._1;
+	var _p4 = _p3._0;
+	return _MacCASOutreach$graphicsvg$GraphicSVG$group(
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_MacCASOutreach$graphicsvg$GraphicSVG$notifyTap,
+				_MacCASOutreach$graphicsvg$Main$Clicked(_p4),
+				A2(
+					_MacCASOutreach$graphicsvg$GraphicSVG$notifyMouseDownAt,
+					_MacCASOutreach$graphicsvg$Main$MouseMoved,
+					A2(
+						_MacCASOutreach$graphicsvg$GraphicSVG$move,
+						_p5.pos,
+						A2(
+							_MacCASOutreach$graphicsvg$GraphicSVG$filled,
+							_MacCASOutreach$graphicsvg$GraphicSVG$red,
+							_MacCASOutreach$graphicsvg$GraphicSVG$square(_p5.shapeSize))))),
+				A2(
+				_MacCASOutreach$graphicsvg$GraphicSVG$move,
+				_p5.pos,
+				A2(
+					_MacCASOutreach$graphicsvg$GraphicSVG$filled,
+					_MacCASOutreach$graphicsvg$GraphicSVG$black,
+					A2(
+						_MacCASOutreach$graphicsvg$GraphicSVG$size,
+						20,
+						_MacCASOutreach$graphicsvg$GraphicSVG$text(
+							_elm_lang$core$Basics$toString(_p4)))))
+			]));
+};
+var _MacCASOutreach$graphicsvg$Main$myView = function (model) {
+	return A3(
+		_MacCASOutreach$graphicsvg$GraphicSVG$collage,
+		750,
+		500,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_MacCASOutreach$graphicsvg$GraphicSVG$group(
+				A2(
+					_elm_lang$core$List$map,
+					_MacCASOutreach$graphicsvg$Main$aBox,
+					_elm_lang$core$Dict$toList(model.instDict))),
+				_MacCASOutreach$graphicsvg$Main$createBox(model)
+			]));
+};
+var _MacCASOutreach$graphicsvg$Main$Tick = F2(
+	function (a, b) {
+		return {ctor: 'Tick', _0: a, _1: b};
+	});
+var _MacCASOutreach$graphicsvg$Main$main = {
+	main: A2(
+		_MacCASOutreach$graphicsvg$GraphicSVG$gameApp,
+		_MacCASOutreach$graphicsvg$Main$Tick,
+		{model: _MacCASOutreach$graphicsvg$Main$myModel, view: _MacCASOutreach$graphicsvg$Main$myView, update: _MacCASOutreach$graphicsvg$Main$update})
+};

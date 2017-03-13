@@ -1,0 +1,58 @@
+var _MacCASOutreach$graphicsvg$FamilyTree$myUpdate = F2(
+	function (message, model) {
+		var _p0 = message;
+		return {
+			x: (_elm_lang$core$Native_Utils.cmp(model.x + 10, 500) > 0) ? 0 : (model.x + 10),
+			y: (_elm_lang$core$Native_Utils.cmp(model.y + 10, 500) > 0) ? 0 : (model.y + 10),
+			t: _p0._0
+		};
+	});
+var _MacCASOutreach$graphicsvg$FamilyTree$squares = _MacCASOutreach$graphicsvg$GraphicSVG$group(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_MacCASOutreach$graphicsvg$GraphicSVG$scale,
+			2,
+			A2(
+				_MacCASOutreach$graphicsvg$GraphicSVG$filled,
+				_MacCASOutreach$graphicsvg$GraphicSVG$purple,
+				_MacCASOutreach$graphicsvg$GraphicSVG$square(20))),
+			A2(
+			_MacCASOutreach$graphicsvg$GraphicSVG$scale,
+			2,
+			A2(
+				_MacCASOutreach$graphicsvg$GraphicSVG$move,
+				{ctor: '_Tuple2', _0: 20, _1: 0},
+				A2(
+					_MacCASOutreach$graphicsvg$GraphicSVG$filled,
+					_MacCASOutreach$graphicsvg$GraphicSVG$red,
+					_MacCASOutreach$graphicsvg$GraphicSVG$square(20))))
+		]));
+var _MacCASOutreach$graphicsvg$FamilyTree$myView = function (model) {
+	return A3(
+		_MacCASOutreach$graphicsvg$GraphicSVG$collage,
+		500,
+		500,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_MacCASOutreach$graphicsvg$GraphicSVG$move,
+				{ctor: '_Tuple2', _0: model.x, _1: model.y},
+				_MacCASOutreach$graphicsvg$FamilyTree$squares)
+			]));
+};
+var _MacCASOutreach$graphicsvg$FamilyTree$shapes = {x: 0, y: 0, t: 0};
+var _MacCASOutreach$graphicsvg$FamilyTree$Ballmodel = F3(
+	function (a, b, c) {
+		return {x: a, y: b, t: c};
+	});
+var _MacCASOutreach$graphicsvg$FamilyTree$GameTick = F2(
+	function (a, b) {
+		return {ctor: 'GameTick', _0: a, _1: b};
+	});
+var _MacCASOutreach$graphicsvg$FamilyTree$main = {
+	main: A2(
+		_MacCASOutreach$graphicsvg$GraphicSVG$gameApp,
+		_MacCASOutreach$graphicsvg$FamilyTree$GameTick,
+		{model: _MacCASOutreach$graphicsvg$FamilyTree$shapes, view: _MacCASOutreach$graphicsvg$FamilyTree$myView, update: _MacCASOutreach$graphicsvg$FamilyTree$myUpdate})
+};
